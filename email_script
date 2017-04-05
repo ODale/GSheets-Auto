@@ -22,20 +22,26 @@ function sendNotification() {
   //check if a part is below minimum value
   //check if in the Priority 1 Raider L/R range 
   if((cellcol >= 17 && cellcol <= 29) && sheet.getName() == "Inventory"){
-    if((cellrow == 9 && cellrow <= 13)){      
-      for(var i in data){
-		//check if in the Lift Motor row
-		//check if the value of the cell is less than the minimum
-	    if((i == 0) && (mycell.getValue() <= data[i])){
-          MailApp.sendEmail(recipient1, subject + " - Raider - Lift Motor Alter!", body + " lift motor quantity is low " 
+    if((cellrow == 9) && (mycell.getValue() <= data[0])){      
+      MailApp.sendEmail(recipient1, subject + " - Raider - Lift Motor Alter!", body + " lift motor quantity is low " 
                             + " visit the following link to see changes: " + ss.getUrl());
-		}
-        /**if((i == 1) && (mycell.getValue() <= data[i])){
-          MailApp.sendEmail(recipient1, subject + " - Raider - Lift Motor Alter!", body + " rotate motor quantity is low " 
-                            + " visit the following link to see changes: " + ss.getUrl());          
-        }**/
-	  }
+	}
+	if((cellrow == 10) && (mycell.getValue() <= data[1])){
+	  MailApp.sendEmail(recipient1, subject + " - Raider - Rotate Motor Alter!", body + " rotate motor quantity is low " 
+                            + " visit the following link to see changes: " + ss.getUrl());	
+	}
+	if((cellrow == 11) && (mycell.getValue() <= data[2])){
+	  MailApp.sendEmail(recipient1, subject + " - Raider - Ci-Coil Alter!", body + " Ci-Coil quantity is low " 
+                            + " visit the following link to see changes: " + ss.getUrl());	
+	}
+	if((cellrow == 12) && (mycell.getValue() <= data[3])){
+	  MailApp.sendEmail(recipient1, subject + " - Raider - Linear Actuator Alter!", body + " Linear Actuator quantity is low " 
+                            + " visit the following link to see changes: " + ss.getUrl());	
+	}
+	if((cellrow == 13) && (mycell.getValue() <= data[4])){
+	  MailApp.sendEmail(recipient1, subject + " - Raider - Harmonic Drive Alter!", body + " Harmonic Drive quantity is low " 
+                            + " visit the following link to see changes: " + ss.getUrl());	
 	}
   }
-  
 }
+
