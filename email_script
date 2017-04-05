@@ -30,41 +30,41 @@ function sendNotification() {
     
     //Check in the Priority 1 Raider range
     if((cellrow == 9) && (mycell.getValue() <= dataP1R[0])){      
-      MailApp.sendEmail(recipient1, subject + " - Raider - Lift Motor Alter!", body + " lift motor quantity is low " 
+      MailApp.sendEmail(recipient1, subject + " - Raider - Lift Motor Alert!", body + ", Lift Motor quantity is low " 
                             + " visit the following link to see changes: " + ss.getUrl());
 	}
 	if((cellrow == 10) && (mycell.getValue() <= dataP1R[1])){
-	  MailApp.sendEmail(recipient1, subject + " - Raider - Rotate Motor Alter!", body + " rotate motor quantity is low " 
+	  MailApp.sendEmail(recipient1, subject + " - Raider - Rotate Motor Alert!", body + ", Rotate Motor quantity is low " 
                             + " visit the following link to see changes: " + ss.getUrl());	
 	}
 	if((cellrow == 11) && (mycell.getValue() <= dataP1R[2])){
-	  MailApp.sendEmail(recipient1, subject + " - Raider - Ci-Coil Alter!", body + " Ci-Coil quantity is low " 
+	  MailApp.sendEmail(recipient1, subject + " - Raider - Ci-Coil Alert!", body + ", Ci-Coil quantity is low " 
                             + " visit the following link to see changes: " + ss.getUrl());	
 	}
 	if((cellrow == 12) && (mycell.getValue() <= dataP1R[3])){
-	  MailApp.sendEmail(recipient1, subject + " - Raider - Linear Actuator Alter!", body + " Linear Actuator quantity is low " 
+	  MailApp.sendEmail(recipient1, subject + " - Raider - Linear Actuator Alert!", body + ", Linear Actuator quantity is low " 
                             + " visit the following link to see changes: " + ss.getUrl());	
 	}
 	if((cellrow == 13) && (mycell.getValue() <= dataP1R[4])){
-	  MailApp.sendEmail(recipient1, subject + " - Raider - Harmonic Drive Alter!", body + " Harmonic Drive quantity is low " 
+	  MailApp.sendEmail(recipient1, subject + " - Raider - Harmonic Drive Alert!", body + ", Harmonic Drive quantity is low " 
                             + " visit the following link to see changes: " + ss.getUrl());	
 	}
   
     //Check in the Priority 1 Equinox range
     if((cellrow == 16) && (mycell.getValue() <= dataP1E[0])){      
-      MailApp.sendEmail(recipient1, subject + " - Raider - Lift Motor Alter!", body + " lift motor quantity is low " 
+      MailApp.sendEmail(recipient1, subject + " - Equinox - Ci-Coil Alert!", body + ", Ci-Coil quantity is low " 
                             + " visit the following link to see changes: " + ss.getUrl());
 	}
 	if((cellrow == 17) && (mycell.getValue() <= dataP1E[1])){
-	  MailApp.sendEmail(recipient1, subject + " - Raider - Rotate Motor Alter!", body + " rotate motor quantity is low " 
+	  MailApp.sendEmail(recipient1, subject + " - Equinox - Lift Board Alert!", body + ", Lift Board quantity is low " 
                             + " visit the following link to see changes: " + ss.getUrl());	
 	}
 	if((cellrow == 18) && (mycell.getValue() <= dataP1E[2])){
-	  MailApp.sendEmail(recipient1, subject + " - Raider - Ci-Coil Alter!", body + " Ci-Coil quantity is low " 
+	  MailApp.sendEmail(recipient1, subject + " - Equinox - Rotate Motor Alert!", body + ", Rotate Motor quantity is low " 
                             + " visit the following link to see changes: " + ss.getUrl());	
 	}
 	if((cellrow == 19) && (mycell.getValue() <= dataP1E[3])){
-	  MailApp.sendEmail(recipient1, subject + " - Raider - Linear Actuator Alter!", body + " Linear Actuator quantity is low " 
+	  MailApp.sendEmail(recipient1, subject + " - Equinox - Lift Motor Alert!", body + ", Lift Motor quantity is low " 
                             + " visit the following link to see changes: " + ss.getUrl());	
 	}
   }
