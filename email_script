@@ -1,0 +1,41 @@
+function sendNotification() {
+  //get active spreadsheet
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = ss.getActiveSheet();
+  
+  //get active cell
+  var mycell = ss.getActiveSelection();
+  var cellcol = mycell.getColumn();
+  var cellrow = mycell.getRow();
+  
+  //get range
+  var dataRange = sheet.getRange("P9:P13");
+  //get data from the range
+  var data = dataRange.getValues();
+  
+  
+  //define notification details
+  var recipient1 = "ocotterell@classoneequipment.com";
+  var subject = "Notification for " +ss.getName();
+  var body = "This is an automatic notification for " + ss.getName();
+  
+  //check if a part is below minimum value
+  //check if in the Priority 1 Raider L/R range 
+  if((cellcol >= 17 && cellcol <= 29) && sheet.getName() == "Inventory"){
+    if((cellrow == 9 && cellrow <= 13)){      
+      for(var i in data){
+		//check if in the Lift Motor row
+		//check if the value of the cell is less than the minimum
+	    if((i == 0) && (mycell.getValue() <= data[i])){
+          MailApp.sendEmail(recipient1, subject + " - Raider - Lift Motor Alter!", body + " lift motor quantity is low " 
+                            + " visit the following link to see changes: " + ss.getUrl());
+		}
+        /**if((i == 1) && (mycell.getValue() <= data[i])){
+          MailApp.sendEmail(recipient1, subject + " - Raider - Lift Motor Alter!", body + " rotate motor quantity is low " 
+                            + " visit the following link to see changes: " + ss.getUrl());          
+        }**/
+	  }
+	}
+  }
+  
+}
