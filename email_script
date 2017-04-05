@@ -67,6 +67,25 @@ function sendNotification() {
 	  MailApp.sendEmail(recipient1, subject + " - Equinox - Lift Motor Alert!", body + ", Lift Motor quantity is low " 
                             + " visit the following link to see changes: " + ss.getUrl());	
 	}
+	
+	//Check in the Priority 1 Raider Robot range
+	if((cellrow == 22) && (mycell.getValue() <= dataP1RR[0])){      
+      MailApp.sendEmail(recipient1, subject + " - Robot - Gear Mating Alert!", body + ", Gear Mating quantity is low " 
+                            + " visit the following link to see changes: " + ss.getUrl());
+	}
+	if((cellrow == 23) && (mycell.getValue() <= dataP1RR[1])){
+	  MailApp.sendEmail(recipient1, subject + " - Robot - Gear Worm Alert!", body + ", Gear Worm quantity is low " 
+                            + " visit the following link to see changes: " + ss.getUrl());	
+	}
+	if((cellrow == 24) && (mycell.getValue() <= dataP1RR[2])){
+	  MailApp.sendEmail(recipient1, subject + " - Robot - Gripper Roller Alert!", body + ", Gripper Roller quantity is low " 
+                            + " visit the following link to see changes: " + ss.getUrl());	
+	}
+	if((cellrow == 25) && (mycell.getValue() <= dataP1RR[3])){
+	  MailApp.sendEmail(recipient1, subject + " - Robot - Gripper Motor Alert!", body + ", Gripper Motor quantity is low " 
+                            + " visit the following link to see changes: " + ss.getUrl());	
+	}
+	
   }
   
   
