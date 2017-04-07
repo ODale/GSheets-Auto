@@ -2,6 +2,10 @@ function sendNotification() {
   //get active spreadsheet
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   var sheet = ss.getActiveSheet();
+  //get other sheets
+  var sheetEmail = ss.getSheetByName("Email Info");
+  var sheetParts = ss.getSheetByName("Parts Detail");
+  
   
   //get active cell
   var mycell = ss.getActiveSelection();
@@ -9,23 +13,55 @@ function sendNotification() {
   var cellrow = mycell.getRow();
   
   //set active column range
-  var lowerLimit = 17;
-  var upperLimit = 29;
+  var lowerLimit = 18;
+  var upperLimit = 30;
   
-  //get range for min values
+  //get values and details for Raider L/R---------------------------
   var dataRangeP1R = sheet.getRange("P9:P13"); //Raider
-  var dataRangeP1E = sheet.getRange("P16:P19"); //Equinox
-  var dataRangeP1RR = sheet.getRange("P22:P25"); //Robot
-  
-  //get data from the range
   var dataP1R = dataRangeP1R.getValues(); //Raider
+  //get Raider L/R details------------------------------------------
+  var raiderDesc = sheetParts.getRange("B4:B8").getValues();
+  var raiderMfr = sheetParts.getRange("F4:F8").getValues();
+  var raiderC1 = sheetParts.getRange("A4:A8").getValues();
+  var raiderOquantity = sheetParts.getRange("E4:E8").getValues();
+  var raiderLocation = sheetParts.getRange("G4:G8").getValues();
+  var raiderUsedFor = sheetParts.getRange("H4:H8").getValues();
+  //get raider order status
+  var raiderOrderStatus = sheet.getRange("Q9:Q13").getValues();
+  
+  //get values and details for Equinox------------------------------
+  var dataRangeP1E = sheet.getRange("P16:P19"); //Equinox
   var dataP1E = dataRangeP1E.getValues(); //Equinox
+  //get Equinox details---------------------------------------------
+  var equinoxDesc = sheetParts.getRange("B11:B14").getValues();
+  var equinoxMfr = sheetParts.getRange("F11:F14").getValues();
+  var equinoxC1 = sheetParts.getRange("A11:A14").getValues();
+  var equinoxOquantity = sheetParts.getRange("E11:E14").getValues();
+  var equinoxLocation = sheetParts.getRange("G11:G14").getValues();
+  var equinoxUsedFor = sheetParts.getRange("H11:H14").getValues();
+  //get equinox order status
+  var equinoxOrderStatus = sheet.getRange("Q16:Q19").getValues();
+  
+  //get values and data for Robot-----------------------------------
+  var dataRangeP1RR = sheet.getRange("P22:P25"); //Robot
   var dataP1RR = dataRangeP1RR.getValues(); //Robot
+  //get Robot details-----------------------------------------------
+  var robotDesc = sheetParts.getRange("B17:B20").getValues();
+  var robotMfr = sheetParts.getRange("F17:F20").getValues();
+  var robotC1 = sheetParts.getRange("A17:A20").getValues();
+  var robotOquantity = sheetParts.getRange("E17:E20").getValues();
+  var robotLocation = sheetParts.getRange("G17:G20").getValues();
+  var robotUsedFor = sheetParts.getRange("H17:H20").getValues();
+  //get robot order status
+  var robotOrderStatus = sheet.getRange("Q22:Q25").getValues();
   
+  //get email details------------------------------------------------
+  var recipientNames = sheetEmail.getRange("A2:A3").getValues();
+  var recipientEmail = sheetEmail.getRange("B2:B3").getValues();
   
-  //define notification details
+  //define test notification details
   var recipient1 = "ocotterell@classoneequipment.com";
-  var subject = "Notification for " +ss.getName();
+  var subject = "Notification for " + ss.getName();
   var body = "This is an automatic notification for " + ss.getName();
   
   //check if a part is below minimum value
@@ -34,23 +70,62 @@ function sendNotification() {
   if((cellcol >= lowerLimit && cellcol <= upperLimit) && sheet.getName() == "Inventory"){
     //Check each row in the Priority 1 Raider range
 	for(var i = 0; i < dataP1R.length; i++){
-	  if((cellrow == (i +9 )) && (mycell.getValue() <= dataP1R[i])){      
-		MailApp.sendEmail(recipient1, subject + " - Raider - Lift Motor Alert!", body + ", Lift Motor quantity is low " 
-						  + " visit the following link to see changes: " + ss.getUrl());
+	  if((cellrow == (i +9 )) && (mycell.getValue() <= dataP1R[i]) && (raiderOrderStatus[i] != "Yes")){   
+		for(var j = 0; j < recipientEmail.length; j++){
+		  MailApp.sendEmail(recipientEmail[j], 
+						    subject + " " + raiderDesc[i] + " Alert!",
+						    recipientNames[j] + ": \n"
+						    + body + ", " + raiderDesc[i] + " is low! \n\n"
+						    + "PO Request: \n"
+						    + "Description: " + raiderDesc[i] + "\n"
+						    + "MFR#: " + raiderMfr[i] + "\n"
+						    + "C1#: " + raiderC1[i] + "\n"
+						    + "Order Quantity: " + raiderOquantity[i] + "\n"
+						    + "Location: " + raiderLocation[i] + "\n"
+						    + "Used for: " + raiderUsedFor[i] + "\n\n"
+						    + "Visit the following link to see changes: \n"
+						    + ss.getUrl());
+		}
 	  }	
 	}
 	//Check each row in the Priority 1 Equinox range
 	for(var i = 0; i < dataP1E.length; i++){
-	  if((cellrow == (i + 16)) && (mycell.getValue() <= dataP1E[i])){      
-        MailApp.sendEmail(recipient1, subject + " - Equinox - Ci-Coil Alert!", body + ", Ci-Coil quantity is low " 
-                          + " visit the following link to see changes: " + ss.getUrl());
+	  if((cellrow == (i + 16)) && (mycell.getValue() <= dataP1E[i]) && (equinoxOrderStatus[i] != "Yes")){  
+		for(var j = 0; j < recipientEmail.length; j++){
+          MailApp.sendEmail(recipientEmail[j], 
+						    subject + " " + equinoxDesc[i] + " Alert!",
+						    recipientNames[j] + ": \n"
+						    + body + ", " + equinoxDesc[i] + " is low! \n\n"
+						    + "PO Request: \n"
+						    + "Description: " + equinoxDesc[i] + "\n"
+						    + "MFR#: " + equinoxMfr[i] + "\n"
+						    + "C1#: " + equinoxC1[i] + "\n"
+						    + "Order Quantity: " + equinoxOquantity[i] + "\n"
+						    + "Location: " + equinoxLocation[i] + "\n"
+						    + "Used for: " + equinoxUsedFor[i] + "\n\n"
+						    + "Visit the following link to see changes: \n"
+						    + ss.getUrl());
+		}
 	  }		
 	}
-	//Check each row in the Priority 1 Raider Robot range
+	//Check each row in the Priority 1 Robot range
 	for(var i = 0; i < dataP1RR.length; i++){
-	  if((cellrow == (i + 22)) && (mycell.getValue() <= dataP1RR[i])){      
-        MailApp.sendEmail(recipient1, subject + " - Robot - Gear Mating Alert!", body + ", Gear Mating quantity is low " 
-                          + " visit the following link to see changes: " + ss.getUrl());
+	  if((cellrow == (i + 22)) && (mycell.getValue() <= dataP1RR[i]) && (robotOrderStatus[i] != "Yes")){   
+		for(var j = 0; j < recipientEmail.length; j++){
+          MailApp.sendEmail(recipientEmail[j], 
+						    subject + " " + robotDesc[i] + " Alert!",
+						    recipientNames[j] + ": \n"
+						    + body + ", " + robotDesc[i] + " is low! \n\n"
+						    + "PO Request: \n"
+						    + "Description: " + robotDesc[i] + "\n"
+						    + "MFR#: " + robotMfr[i] + "\n"
+						    + "C1#: " + robotC1[i] + "\n"
+						    + "Order Quantity: " + robotOquantity[i] + "\n"
+						    + "Location: " + robotLocation[i] + "\n"
+						    + "Used for: " + robotUsedFor[i] + "\n\n"
+						    + "Visit the following link to see changes: \n"
+						    + ss.getUrl());
+		}
 	  }			
 	}  	
   }
