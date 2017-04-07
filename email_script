@@ -73,9 +73,9 @@ function sendNotification() {
 	  if((cellrow == (i +9 )) && (mycell.getValue() <= dataP1R[i]) && (raiderOrderStatus[i] != "Yes")){   
 		for(var j = 0; j < recipientEmail.length; j++){
 		  MailApp.sendEmail(recipientEmail[j], 
-						    subject + " " + raiderDesc[i] + " Alert!",
+						    subject + " Raider L/R" + raiderDesc[i] + " Alert!",
 						    recipientNames[j] + ": \n"
-						    + body + ", " + raiderDesc[i] + " is low! \n\n"
+						    + body + ", Raider L/R" + raiderDesc[i] + " is low! \n\n"
 						    + "PO Request: \n"
 						    + "Description: " + raiderDesc[i] + "\n"
 						    + "MFR#: " + raiderMfr[i] + "\n"
@@ -93,9 +93,9 @@ function sendNotification() {
 	  if((cellrow == (i + 16)) && (mycell.getValue() <= dataP1E[i]) && (equinoxOrderStatus[i] != "Yes")){  
 		for(var j = 0; j < recipientEmail.length; j++){
           MailApp.sendEmail(recipientEmail[j], 
-						    subject + " " + equinoxDesc[i] + " Alert!",
+						    subject + " Equinox " + equinoxDesc[i] + " Alert!",
 						    recipientNames[j] + ": \n"
-						    + body + ", " + equinoxDesc[i] + " is low! \n\n"
+						    + body + ", Equinox " + equinoxDesc[i] + " is low! \n\n"
 						    + "PO Request: \n"
 						    + "Description: " + equinoxDesc[i] + "\n"
 						    + "MFR#: " + equinoxMfr[i] + "\n"
@@ -113,9 +113,9 @@ function sendNotification() {
 	  if((cellrow == (i + 22)) && (mycell.getValue() <= dataP1RR[i]) && (robotOrderStatus[i] != "Yes")){   
 		for(var j = 0; j < recipientEmail.length; j++){
           MailApp.sendEmail(recipientEmail[j], 
-						    subject + " " + robotDesc[i] + " Alert!",
+						    subject + " Robot" + robotDesc[i] + " Alert!",
 						    recipientNames[j] + ": \n"
-						    + body + ", " + robotDesc[i] + " is low! \n\n"
+						    + body + ", Robot" + robotDesc[i] + " is low! \n\n"
 						    + "PO Request: \n"
 						    + "Description: " + robotDesc[i] + "\n"
 						    + "MFR#: " + robotMfr[i] + "\n"
