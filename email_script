@@ -82,9 +82,7 @@ function sendNotification() {
 						    + "C1#: " + raiderC1[i] + "\n"
 						    + "Order Quantity: " + raiderOquantity[i] + "\n"
 						    + "Location: " + raiderLocation[i] + "\n"
-						    + "Used for: " + raiderUsedFor[i] + "\n\n"
-						    + "Visit the following link to see changes: \n"
-						    + ss.getUrl());
+						    + "Used for: " + raiderUsedFor[i] + "\n\n");
 		}
 	  }	
 	}
@@ -102,9 +100,7 @@ function sendNotification() {
 						    + "C1#: " + equinoxC1[i] + "\n"
 						    + "Order Quantity: " + equinoxOquantity[i] + "\n"
 						    + "Location: " + equinoxLocation[i] + "\n"
-						    + "Used for: " + equinoxUsedFor[i] + "\n\n"
-						    + "Visit the following link to see changes: \n"
-						    + ss.getUrl());
+						    + "Used for: " + equinoxUsedFor[i] + "\n\n");
 		}
 	  }		
 	}
@@ -122,9 +118,7 @@ function sendNotification() {
 						    + "C1#: " + robotC1[i] + "\n"
 						    + "Order Quantity: " + robotOquantity[i] + "\n"
 						    + "Location: " + robotLocation[i] + "\n"
-						    + "Used for: " + robotUsedFor[i] + "\n\n"
-						    + "Visit the following link to see changes: \n"
-						    + ss.getUrl());
+						    + "Used for: " + robotUsedFor[i] + "\n\n");						    
 		}
 	  }			
 	}  	
